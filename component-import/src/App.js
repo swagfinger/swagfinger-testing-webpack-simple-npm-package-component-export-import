@@ -1,7 +1,17 @@
-import './App.css';
+import { useState } from 'react';
+
+import { Input } from 'swagfinger-component';
 
 function App() {
-  return <div className='App'>hi</div>;
+  const [myvalue, setValue] = useState('');
+  const onChangeHandler = (e) => {
+    setValue(e.target.value);
+  };
+  return (
+    <div className='App'>
+      <Input value={myvalue} onChange={onChangeHandler} />
+    </div>
+  );
 }
 
 export default App;
