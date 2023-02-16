@@ -69,10 +69,47 @@ Create a new file in your project directory called .babelrc. This file will cont
 
 ```json
 // add to package.json
-"scripts": {
-    "build": "webpack"
-  }
+  "scripts": {
+    "start": "webpack-dev-server --mode development --config webpack.config.js",
+    "build": "webpack --mode production --config webpack.config.js"
+  },
+```
 
+## index.development.js
+
+```js
+//src/index.development.js
+
+import React, { useState } from 'react';
+import { createRoot } from 'react-dom/client';
+
+import { Input } from './components/Input';
+
+const container = document.getElementById('root');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+
+const InputExample = () => {
+  const [value, setValue] = useState('');
+  const onChangeHandler = (e) => {
+    console.log(e.target.value);
+    setValue(e.target.value);
+  };
+
+  return <Input value={value} onChange={onChangeHandler} />;
+};
+
+root.render(<InputExample />);
+```
+
+## index.production.js
+
+```js
+//src/index.production.js
+export * from './components/Input';
+```
+
+```shell
+npm i html-webpack-plugin
 ```
 
 Run npm run build to build your application. The bundled file will be in the dist directory.
@@ -96,4 +133,27 @@ Finally, you can start writing your react code in the index.js file and the rest
     <script src="./bundle.js"></script>
   </body>
 </html>
+```
+
+## publishing to NPM
+
+## npm login
+
+```shell
+npm login
+```
+
+## create package
+
+-For an organization-scoped package, replace my-org with the name of your organization
+
+```
+npm init --scope=@my-org
+```
+
+npm organization packages are scoped and private by default
+to publish as public
+
+```shell
+npm publish --access=public
 ```
