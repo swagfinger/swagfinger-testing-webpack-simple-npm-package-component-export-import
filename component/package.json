@@ -1,8 +1,8 @@
 {
-  "name": "swagfinger-component",
+  "name": "@swagfinger/swagfinger-component",
   "main": "./dist/index.js",
   "version": "1.0.35",
-  "description": "",
+  "description": "Here are the steps to set up a basic React project without using create-react-app and using webpack and ES modules:",
   "scripts": {
     "start": "webpack-dev-server --mode development --config webpack.config.js",
     "build": "webpack --mode production --config webpack.config.js"
